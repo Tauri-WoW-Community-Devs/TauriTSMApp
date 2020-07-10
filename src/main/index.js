@@ -22,7 +22,7 @@ app.whenReady().then(() => {
     { type: 'separator' },
     { role: 'quit' }
   ])
-  tray.setToolTip('This is my application.')
+  tray.setToolTip(app.name)
   tray.setContextMenu(contextMenu)
 })
 
