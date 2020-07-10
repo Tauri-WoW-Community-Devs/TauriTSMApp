@@ -1,8 +1,7 @@
 'use strict'
 
 import { app, Menu, Tray } from 'electron'
-import * as path from 'path'
-import util from './functions.js'
+import functions from './functions.js'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -10,18 +9,20 @@ let tray = null
 
 app.whenReady().then(() => {
   tray = new Tray('icon.png')
+
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Update Data Now', type: 'normal', click: () => {
-        util.updateData()
+        functions.updateData()
       }
     },
     { label: 'Set Wow Path', type: 'normal', click: () => {
-        util.setWowPath()
+        functions.setWowPath()
       }
     },
     { type: 'separator' },
     { role: 'quit' }
   ])
+
   tray.setToolTip(app.name)
   tray.setContextMenu(contextMenu)
 })
