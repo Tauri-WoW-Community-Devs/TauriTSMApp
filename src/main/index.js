@@ -7,12 +7,15 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 let tray = null
 
-app.whenReady().then(() => {
+/**
+ * Creates the tray icon with its menu
+ */
+function createTray() {
   tray = new Tray('icon.png')
 
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Update Data Now', type: 'normal', click: () => {
-        functions.updateData()
+        functions.updateDataNow()
       }
     },
     { label: 'Set Wow Path', type: 'normal', click: () => {
@@ -25,16 +28,14 @@ app.whenReady().then(() => {
 
   tray.setToolTip(app.name)
   tray.setContextMenu(contextMenu)
-})
+}
 
-app.on('window-all-closed', () => {
-  // on macOS it is common for applications to stay open until the user explicitly quits
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.whenReady().then(() => {
+  //Creates the tray icon with its menu
+  createTray();
+
+  if (functions.wowPathIsCorrect()) {
+    //Download file to WoW Path
+    functions.eventuallyDownload()
   }
-})
-
-// create main BrowserWindow when electron is ready
-app.on('ready', () => {
-
 })
