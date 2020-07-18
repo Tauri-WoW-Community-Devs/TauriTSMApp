@@ -1,13 +1,14 @@
 {
   "name": "tauri-tsm-app",
-  "productName": "Tauri TSM App",
+  "productName": "Tauri TSM",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+    "dist": "yarn compile && electron-builder --windows",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "release": "electron-builder --windows --publish always"
   },
   "dependencies": {
     "electron-dl": "^3.0.1",
@@ -23,6 +24,7 @@
   },
   "build": {
     "appId": "com.tauri.tsm",
+    "productName": "Tauri TSM",
     "extraFiles": [{
       "from": "assets",
       "to": "assets",
