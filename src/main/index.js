@@ -2,16 +2,19 @@
 
 import { app, Menu, Tray } from 'electron'
 import functions from './functions.js'
+import { rootPath } from 'electron-root-path'
+import * as path from 'path'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-let tray = null
+let tray = undefined
 
 /**
  * Creates the tray icon with its menu
  */
 function createTray() {
-  tray = new Tray('icon.png')
+  const icon = path.join(rootPath, 'assets', 'tray.png');
+  tray = new Tray(icon)
 
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Update Data Now', type: 'normal', click: () => {
@@ -30,8 +33,9 @@ function createTray() {
   tray.setContextMenu(contextMenu)
 }
 
-app.whenReady().then(() => {
-  //Creates the tray icon with its menu
+// create main BrowserWindow when electron is ready
+app.on('ready', () => {
+    //Creates the tray icon with its menu
   createTray();
 
   if (functions.wowPathIsCorrect()) {
