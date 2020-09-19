@@ -13,7 +13,7 @@ const timer = new Timer(function () {
   console.log('setInterval executed')
   updateDataNow()
 }, store.get('downloadEvery'))
-const url = 'https://blooming-everglades-21982.herokuapp.com/downloadFile';
+const url = 'https://tauritsm.tk/storage/AppData.lua';
 let auctionDBPath = store.get('wowPath') + '/Interface/AddOns/TradeSkillMaster_AuctionDB'
 
 

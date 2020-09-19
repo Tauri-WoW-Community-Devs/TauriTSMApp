@@ -25,12 +25,14 @@
   "build": {
     "appId": "com.tauri.tsm",
     "productName": "Tauri TSM",
-    "extraFiles": [{
-      "from": "assets",
-      "to": "assets",
-      "filter": [
-        "**/*"
-      ]
-    }]
+    "extraFiles": [
+      {
+        "from": "assets",
+        "to": "assets",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
   }
 }
